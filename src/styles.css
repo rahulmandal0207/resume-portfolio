@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+* {
+    /*border: 1px solid lime;*/
+}
+
+.jetbrains-mono-700 {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    
+}
+
+.consolas-400 {
+    font-family: 'consolas';
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(107, 114, 128);
+    font-size: 1.05rem;
+}
+
+.consolas-500 {
+    font-family: 'consolas';
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(107, 114, 128);
+    font-size: 1.3rem;
+}
+
+.symbol {
+    border: 1px solid hsl(210 40% 96.1%);
+    border-radius: .3rem;
+}
+
+.symbol:hover {
+    background-color: hsl(210 40% 96.1%);
+}
+
+.description {
+    text-align: justify;
+}
+
+.location {
+    background-color: rgb(238, 239, 240);
+    padding: .4rem;
+    color: rgb(84, 87, 94);
+    font-weight: 700;
+    font-family: 'consolas';
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(107, 114, 128);
+}
