@@ -19,13 +19,13 @@ export const profile: Profile = {
   tagline:
     'I build web applications with .NET, Angular and SQL Server, and computer-vision systems in Python.',
   about: [
-    'I am a software engineer at Eudemonic Technologies, where I work with .NET, Angular and SQL Server. I hold a Master of Computer Applications from GD Goenka University, and before this role I built web applications end to end across two internships and several university projects.',
+    'I am a software engineer at Eudemonic Technologies, where I build enterprise web features with Angular, NgRx and PrimeNG on a .NET and SQL Server stack. I hold a Master of Computer Applications from GD Goenka University, and before this role I built web applications end to end across two internships and several university projects.',
     'Alongside web work I build computer-vision projects in Python: a driver fatigue detector and a number-plate recognition system, both using OpenCV.',
   ],
   email: 'rahulkumar397222@gmail.com',
   github: 'rahulmandal0207',
   linkedin: 'rahurahul-mandal-462a78360',
-  headlineStack: ['.NET Core', 'Angular', 'SQL Server', 'Python', 'OpenCV'],
+  headlineStack: ['Angular', 'TypeScript', 'NgRx', '.NET Core', 'SQL Server', 'Python'],
   // resumeUrl: 'resume.pdf',
 };
 
@@ -58,8 +58,12 @@ export const timeline: TimelineEntry[] = [
     // location: 'City, State',
     start: '2025-09',
     // No `end`, so this shows as "Present".
-    // highlights: ['What you built', 'What changed because of it'],
-    tags: ['.NET', 'Angular', 'SQL Server'],
+    highlights: [
+      'Built and modernized feature modules of an enterprise web platform with Angular 19, PrimeNG and NgRx, including multi-tab forms, workflows and data-driven dashboards.',
+      'Added role-based access control and wrote reusable directives and UI components that keep behavior consistent across the app.',
+      'Improved reliability with Jest unit tests, guards against duplicate API calls and better loading states, and added file attachments to an AI assistant feature.',
+    ],
+    tags: ['Angular 19', 'NgRx', 'PrimeNG', 'Jest', '.NET', 'SQL Server'],
   },
   {
     id: 'gd-goenka-mca',
@@ -198,10 +202,15 @@ export const projects: Project[] = [
 ];
 
 export const skills: SkillGroup[] = [
+  { label: 'Frontend', items: ['Angular 19', 'TypeScript', 'NgRx', 'PrimeNG', 'HTML', 'CSS'] },
   { label: 'Backend', items: ['C#', '.NET Core', 'ASP.NET Web API', 'SQL Server'] },
-  { label: 'Frontend', items: ['Angular', 'TypeScript', 'HTML', 'CSS'] },
+  { label: 'Testing & quality', items: ['Jest', 'ESLint', 'Prettier'] },
+  { label: 'Tools', items: ['Postman', 'SSMS', 'Claude Code'] },
+  {
+    label: 'Workflow',
+    items: ['Git', 'Bitbucket', 'GitHub', 'Feature branches', 'SIT / UAT / Prod configs'],
+  },
   { label: 'Computer vision', items: ['Python', 'OpenCV', 'YOLO', 'MediaPipe', 'EasyOCR'] },
-  { label: 'Tools', items: ['Git', 'GitHub', 'Postman', 'SSMS'] },
 ];
 
 export const certificates: Certificate[] = [
