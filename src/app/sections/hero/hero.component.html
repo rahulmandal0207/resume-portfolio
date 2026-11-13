@@ -51,40 +51,6 @@
       </ul>
     </div>
 
-    <!-- Decorative: repeats information that is on the page as real text. -->
-    <div class="terminal" aria-hidden="true">
-      <div class="titlebar">
-        <span class="dot red"></span>
-        <span class="dot amber"></span>
-        <span class="dot green"></span>
-        <span class="title">{{ profile.handle }} — zsh</span>
-      </div>
-      <div class="screen">
-        @for (line of lines; track $index; let i = $index) {
-          <p class="line" [class]="line.kind" [style.animation-delay.ms]="350 + i * 130">
-            @switch (line.kind) {
-              @case ('command') {
-                <span class="ps1">$</span> {{ line.text }}
-              }
-              @case ('commit') {
-                <span class="hash">{{ line.hash }}</span>
-                <span class="message">
-                  @if (line.head) {
-                    <span class="ref">(HEAD)</span>
-                  }
-                  {{ line.text }}
-                </span>
-              }
-              @default {
-                {{ line.text }}
-              }
-            }
-          </p>
-        }
-        <p class="line command" [style.animation-delay.ms]="350 + lines.length * 130">
-          <span class="ps1">$</span> <span class="caret"></span>
-        </p>
-      </div>
-    </div>
+    <app-terminal />
   </div>
 </section>

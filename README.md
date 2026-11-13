@@ -9,6 +9,7 @@ Personal portfolio built with Angular 18. Single page, prerendered to static HTM
 ## Features
 
 - **Scroll timeline** – work and education merged on one rail that fills as you scroll; entries fade in and their nodes light up as they pass. Filter by kind and flip the sort order.
+- **Interactive terminal** – the hero terminal accepts commands (`help`, `experience`, `skills`, `projects`, `open vrpr`, `goto journey`, `theme`…) with Tab completion and ↑/↓ history. Its answers come from the same data file.
 - **Data-driven** – every word on the page comes from one file. Add an object, get a new timeline entry or project card.
 - **Dark and light themes** – follows the system setting, remembers the visitor's choice.
 - **Prerendered** – the build outputs real HTML, so the page is readable without JavaScript and previews correctly when shared.
@@ -51,6 +52,10 @@ Append an object to `timeline`. Order does not matter; entries are sorted by `st
 - **Project screenshot** – put the image in `public/` and set `image: 'file-name.png'` on the project.
 - **Featured project** – set `featured: true` to give it a large card at the top.
 
+### Terminal commands
+
+Commands live in [`terminal.commands.ts`](src/app/sections/hero/terminal/terminal.commands.ts). To add one, add it to `COMMANDS` (so `help` lists it) and handle it in the `switch` inside `runCommand()`. New timeline entries and projects show up in the terminal without any change there.
+
 ## Development
 
 ```bash
@@ -69,7 +74,7 @@ npm run build    # static site in dist/resume-portfolio/browser
 ```
 src/app/
   data/        content and its TypeScript types
-  sections/    header, hero, about, timeline, projects, certificates, contact
-  shared/      icon component, scroll-reveal directive
+  sections/    header, hero (+ terminal), about, timeline, projects, certificates, contact
+  shared/      icon component, scroll-reveal directive, theme service
   utils/       date formatting helpers
 ```

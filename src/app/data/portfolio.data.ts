@@ -19,7 +19,7 @@ export const profile: Profile = {
   tagline:
     'I build web applications with .NET, Angular and SQL Server, and computer-vision systems in Python.',
   about: [
-    'I am a full stack developer with a Master of Computer Applications from GD Goenka University. Across two internships and several university projects I have built web applications end to end with .NET Core, Angular and SQL Server, with a focus on performance and interfaces that are easy to use.',
+    'I am a software engineer at Eudemonic Technologies, where I work with .NET, Angular and SQL Server. I hold a Master of Computer Applications from GD Goenka University, and before this role I built web applications end to end across two internships and several university projects.',
     'Alongside web work I build computer-vision projects in Python: a driver fatigue detector and a number-plate recognition system, both using OpenCV.',
   ],
   email: 'rahulkumar397222@gmail.com',
@@ -50,6 +50,17 @@ export const profile: Profile = {
  *   },
  */
 export const timeline: TimelineEntry[] = [
+  {
+    id: 'eudemonic-software-engineer',
+    kind: 'work',
+    title: 'Software Engineer',
+    org: 'Eudemonic Technologies Pvt. Ltd.',
+    // location: 'City, State',
+    start: '2025-09',
+    // No `end`, so this shows as "Present".
+    // highlights: ['What you built', 'What changed because of it'],
+    tags: ['.NET', 'Angular', 'SQL Server'],
+  },
   {
     id: 'gd-goenka-mca',
     kind: 'education',
@@ -194,6 +205,13 @@ export const skills: SkillGroup[] = [
 ];
 
 export const certificates: Certificate[] = [
+  {
+    title: 'Certificate of Achievement',
+    issuer: 'AlignMyCareer',
+    date: '2025-06',
+    description:
+      'C#, .NET Core',
+  },
   {
     title: 'Postman API Fundamentals Student Expert',
     issuer: 'Postman',

@@ -1,0 +1,247 @@
+/* The terminal keeps its dark look in both themes. */
+:host {
+  --t-bg: #0d1219;
+  --t-bar: #121924;
+  --t-border: #263142;
+  --t-text: #d5dce6;
+  --t-bright: #f1f4f8;
+  --t-dim: #7c8a9c;
+  --t-green: #3ddc97;
+  --t-amber: #e0af68;
+  --t-blue: #7aa2f7;
+  --t-red: #f7768e;
+  display: block;
+  min-width: 0;
+}
+
+.terminal {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--t-border);
+  border-radius: var(--radius);
+  background: var(--t-bg);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  color: var(--t-text);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  animation: rise 0.8s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  transition: border-color 0.2s ease;
+}
+
+.terminal:focus-within {
+  border-color: color-mix(in srgb, var(--t-green) 55%, var(--t-border));
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid #1f2836;
+  background: var(--t-bar);
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.red { background: var(--t-red); }
+.amber { background: var(--t-amber); }
+.green { background: var(--t-green); }
+
+.title {
+  margin-left: 0.5rem;
+  color: var(--t-dim);
+  font-size: 0.74rem;
+}
+
+/* ---- Scrolling screen ---- */
+.screen {
+  height: 19.5rem;
+  padding: 1rem 1.1rem 0.9rem;
+  overflow-y: auto;
+  cursor: text;
+  scrollbar-width: thin;
+  scrollbar-color: #2b3647 transparent;
+}
+
+.line {
+  overflow-wrap: anywhere;
+  animation: type 0.25s ease both;
+}
+
+@keyframes type {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+
+.line.command {
+  display: flex;
+  gap: 0.6em;
+  margin-top: 0.55rem;
+  color: var(--t-bright);
+}
+
+.line.command:first-child {
+  margin-top: 0;
+}
+
+.line.text {
+  color: #b9c5d3;
+}
+
+.line.muted,
+.line.detail {
+  color: var(--t-dim);
+}
+
+/* Second line under a job or degree: dates and stack, indented. */
+.line.detail {
+  padding-left: 2ch;
+}
+
+.line.error {
+  color: var(--t-red);
+}
+
+.line.commit,
+.line.pair,
+.line.link {
+  display: grid;
+  gap: 0.9em;
+}
+
+.line.commit {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.line.pair,
+.line.link {
+  grid-template-columns: minmax(0, 13ch) minmax(0, 1fr);
+  color: #b9c5d3;
+}
+
+.ps1 {
+  color: var(--t-green);
+  font-weight: 700;
+}
+
+.hash {
+  color: var(--t-amber);
+}
+
+.ref,
+.key {
+  color: var(--t-blue);
+}
+
+.line a {
+  color: var(--t-green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- Prompt ---- */
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 0.55rem;
+  cursor: text;
+  animation: type 0.25s ease both;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--t-bright);
+  font: inherit;
+  caret-color: var(--t-green);
+}
+
+.input::placeholder {
+  color: #566273;
+}
+
+/* The whole terminal shows focus (see .terminal:focus-within). */
+.input:focus-visible {
+  outline: 0;
+}
+
+/* ---- Suggestion chips ---- */
+.hints {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.9rem 0.7rem;
+  border-top: 1px solid #1f2836;
+  background: var(--t-bar);
+}
+
+.hints-label {
+  margin-right: 0.15rem;
+  color: #566273;
+  font-size: 0.72rem;
+}
+
+.hint {
+  min-height: 28px;
+  padding: 0.1rem 0.6rem;
+  border: 1px solid #2b3647;
+  border-radius: 999px;
+  background: transparent;
+  color: #9fb0c3;
+  font-family: inherit;
+  font-size: 0.74rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.hint:hover {
+  border-color: var(--t-green);
+  color: var(--t-green);
+}
+
+.hint:focus-visible {
+  outline-color: var(--t-green);
+}
+
+/* Phones zoom the page when a focused input is under 16px. */
+@media (pointer: coarse) {
+  .input {
+    font-size: 16px;
+  }
+
+  .hint {
+    min-height: 34px;
+    padding-inline: 0.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .screen {
+    height: 18rem;
+  }
+}

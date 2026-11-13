@@ -9,8 +9,7 @@ import {
 } from '@angular/core';
 import { profile } from '../../data/portfolio.data';
 import { IconComponent } from '../../shared/icon.component';
-
-type Theme = 'dark' | 'light';
+import { ThemeService } from '../../shared/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +30,8 @@ export class HeaderComponent {
     { id: 'contact', label: 'Contact' },
   ];
 
-  protected readonly theme = signal<Theme>('dark');
+  private readonly themeService = inject(ThemeService);
+  protected readonly theme = this.themeService.theme;
   protected readonly menuOpen = signal(false);
   /** Id of the section currently in view, for the nav highlight. */
   protected readonly active = signal('');
@@ -40,9 +40,6 @@ export class HeaderComponent {
     const destroyRef = inject(DestroyRef);
 
     afterNextRender(() => {
-      const root = document.documentElement;
-      this.theme.set(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
-
       // On scroll: solid background after a few pixels, and highlight the
       // last section whose top has passed 40% of the viewport height.
       let frame = 0;
@@ -76,13 +73,6 @@ export class HeaderComponent {
   }
 
   protected toggleTheme(): void {
-    const next: Theme = this.theme() === 'dark' ? 'light' : 'dark';
-    this.theme.set(next);
-    document.documentElement.setAttribute('data-theme', next);
-    try {
-      localStorage.setItem('theme', next);
-    } catch {
-      // Storage can be blocked (private mode); the toggle still works for this visit.
-    }
+    this.themeService.toggle();
   }
 }
