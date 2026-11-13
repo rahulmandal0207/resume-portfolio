@@ -25,7 +25,14 @@ export const profile: Profile = {
   email: 'rahulkumar397222@gmail.com',
   github: 'rahulmandal0207',
   linkedin: 'rahurahul-mandal-462a78360',
-  headlineStack: ['Angular', 'TypeScript', 'NgRx', '.NET Core', 'SQL Server', 'Python'],
+  headlineStack: [
+    'Angular',
+    'TypeScript',
+    'NgRx',
+    '.NET Core',
+    'SQL Server',
+    'Python',
+  ],
   // resumeUrl: 'resume.pdf',
 };
 
@@ -202,25 +209,40 @@ export const projects: Project[] = [
 ];
 
 export const skills: SkillGroup[] = [
-  { label: 'Frontend', items: ['Angular 19', 'TypeScript', 'NgRx', 'PrimeNG', 'HTML', 'CSS'] },
-  { label: 'Backend', items: ['C#', '.NET Core', 'ASP.NET Web API', 'SQL Server'] },
+  {
+    label: 'Frontend',
+    items: ['Angular 19', 'TypeScript', 'NgRx', 'PrimeNG', 'HTML', 'CSS'],
+  },
+  {
+    label: 'Backend',
+    items: ['C#', '.NET Core', 'ASP.NET Web API', 'SQL Server'],
+  },
   { label: 'Testing & quality', items: ['Jest', 'ESLint', 'Prettier'] },
   { label: 'Tools', items: ['Postman', 'SSMS', 'Claude Code'] },
   {
     label: 'Workflow',
-    items: ['Git', 'Bitbucket', 'GitHub', 'Feature branches', 'SIT / UAT / Prod configs'],
+    items: [
+      'Git',
+      'Bitbucket',
+      'GitHub',
+      'Feature branches',
+      'SIT / UAT / Prod configs',
+    ],
   },
-  { label: 'Computer vision', items: ['Python', 'OpenCV', 'YOLO', 'MediaPipe', 'EasyOCR'] },
+  {
+    label: 'Computer vision',
+    items: ['Python', 'OpenCV', 'YOLO', 'MediaPipe', 'EasyOCR'],
+  },
 ];
 
 export const certificates: Certificate[] = [
-  {
-    title: 'Certificate of Achievement',
-    issuer: 'AlignMyCareer',
-    date: '2025-06',
-    description:
-      'C#, .NET Core',
-  },
+  //{
+  //  title: 'Certificate of Achievement',
+  //  issuer: 'AlignMyCareer',
+  //  date: '2025-06',
+  //  description:
+  //    'C#, .NET Core',
+  //},
   {
     title: 'Postman API Fundamentals Student Expert',
     issuer: 'Postman',
