@@ -1,0 +1,56 @@
+<section id="top" class="hero">
+  <div class="container grid">
+    <div class="intro">
+      <p class="hello"><span class="prompt" aria-hidden="true">&gt;</span> Hello, I'm</p>
+      <h1 class="name">{{ profile.name }}</h1>
+      <p class="role">{{ profile.role }}</p>
+      <p class="tagline">{{ profile.tagline }}</p>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn" href="#journey">
+          My journey
+          <app-icon name="arrowDown" [size]="16" />
+        </a>
+        @if (profile.resumeUrl) {
+          <a class="btn" [href]="profile.resumeUrl" download>
+            <app-icon name="download" [size]="16" />
+            Résumé
+          </a>
+        }
+      </div>
+
+      <ul class="social">
+        <li>
+          <a
+            class="icon-btn"
+            [href]="'https://github.com/' + profile.github"
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub profile"
+          >
+            <app-icon name="github" />
+          </a>
+        </li>
+        <li>
+          <a
+            class="icon-btn"
+            [href]="'https://www.linkedin.com/in/' + profile.linkedin"
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn profile"
+          >
+            <app-icon name="linkedin" />
+          </a>
+        </li>
+        <li>
+          <a class="icon-btn" [href]="'mailto:' + profile.email" aria-label="Send an email">
+            <app-icon name="mail" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <app-terminal />
+  </div>
+</section>

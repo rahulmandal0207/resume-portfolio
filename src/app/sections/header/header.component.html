@@ -1,0 +1,42 @@
+<header class="bar">
+  <div class="container inner">
+    <a class="brand" href="#top" [attr.aria-label]="profile.name + ', back to top'">
+      <span class="path">~/</span>{{ profile.handle }}<span class="cursor" aria-hidden="true"></span>
+    </a>
+
+    <nav id="site-nav" class="nav" [class.open]="menuOpen()" aria-label="Sections">
+      @for (link of links; track link.id; let i = $index) {
+        <a
+          [href]="'#' + link.id"
+          [class.active]="active() === link.id"
+          [attr.aria-current]="active() === link.id ? 'location' : null"
+          (click)="menuOpen.set(false)"
+        >
+          <span class="index" aria-hidden="true">0{{ i + 1 }}.</span>{{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <div class="actions">
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleTheme()"
+        [attr.aria-label]="theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+      >
+        <app-icon [name]="theme() === 'dark' ? 'sun' : 'moon'" />
+      </button>
+
+      <button
+        type="button"
+        class="icon-btn menu-btn"
+        (click)="menuOpen.set(!menuOpen())"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="site-nav"
+        [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+      >
+        <app-icon [name]="menuOpen() ? 'close' : 'menu'" />
+      </button>
+    </div>
+  </div>
+</header>

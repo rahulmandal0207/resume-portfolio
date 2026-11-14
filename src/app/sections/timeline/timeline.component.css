@@ -1,0 +1,364 @@
+/* ---- Filter / sort controls ---- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 2.25rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.filter:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.filter.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.count {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+}
+
+.filter.selected .count {
+  color: inherit;
+  opacity: 0.75;
+}
+
+/* ---- Track + rail ---- */
+.track {
+  --when-w: 168px;
+  --lane-w: 76px;
+  --rail-x: calc(var(--when-w) + var(--lane-w) / 2);
+  --progress: 0;
+  position: relative;
+}
+
+.rail {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: var(--rail-x);
+  width: 2px;
+  margin-left: -1px;
+  border-radius: 2px;
+  background: var(--border);
+}
+
+.rail-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom, var(--accent), var(--edu));
+  transform: scaleY(var(--progress));
+  transform-origin: top;
+}
+
+/* Glowing tip that travels down the rail with the scroll position. */
+.rail-head {
+  position: absolute;
+  top: calc(var(--progress) * 100%);
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 4px var(--accent-soft),
+    0 0 16px 2px var(--accent);
+}
+
+/* ---- Entries ---- */
+.list {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.entry {
+  --kind: var(--accent);
+  --kind-soft: var(--accent-soft);
+  display: grid;
+  grid-template-columns: var(--when-w) var(--lane-w) minmax(0, 1fr);
+  align-items: start;
+}
+
+.entry.education {
+  --kind: var(--edu);
+  --kind-soft: var(--edu-soft);
+}
+
+.when {
+  position: sticky;
+  top: calc(var(--header-h) + 28px);
+  display: grid;
+  gap: 0.15rem;
+  padding-top: 1.15rem;
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.range {
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.duration {
+  color: var(--text-faint);
+  font-size: 0.74rem;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 0.85rem;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text-faint);
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.entry.is-passed .node {
+  border-color: var(--kind);
+  background: var(--kind);
+  color: var(--bg);
+  box-shadow: 0 0 0 6px var(--kind-soft);
+  transform: scale(1.08);
+}
+
+.card {
+  position: relative;
+  padding: 1.25rem 1.4rem 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: border-color 0.35s ease;
+}
+
+/* Connector from the node to the card. */
+.card::before {
+  content: '';
+  position: absolute;
+  top: calc(0.85rem + 14px);
+  right: 100%;
+  width: calc(var(--lane-w) / 2 - 15px);
+  height: 2px;
+  background: var(--border);
+  transition: background-color 0.35s ease;
+}
+
+.entry.is-passed .card {
+  border-color: color-mix(in srgb, var(--kind) 45%, var(--border));
+}
+
+.entry.is-passed .card::before {
+  background: var(--kind);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.kind {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--kind-soft);
+  color: var(--kind);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.hash {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.title {
+  font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+}
+
+.org {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.9rem;
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.org-name {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.88rem;
+}
+
+.summary {
+  margin-top: 0.85rem;
+  color: var(--text-muted);
+}
+
+.highlights {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.highlights li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--kind);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.1rem;
+  margin-top: 1.1rem;
+}
+
+/* ---- Scroll reveal. Only hides entries when JS is available. ---- */
+:host-context(html.js) .when,
+:host-context(html.js) .card {
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.35s ease;
+}
+
+:host-context(html.js) .card {
+  transform: translateX(28px);
+}
+
+:host-context(html.js) .when {
+  transform: translateX(-16px);
+}
+
+:host-context(html.js) .entry.is-in .when,
+:host-context(html.js) .entry.is-in .card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Narrow screens: rail on the left, date above the card ---- */
+@media (max-width: 820px) {
+  .track {
+    --lane-w: 44px;
+    --rail-x: 15px;
+  }
+
+  .entry {
+    grid-template-columns: var(--lane-w) minmax(0, 1fr);
+  }
+
+  .node {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    justify-self: start;
+    margin-top: 0;
+  }
+
+  .when {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+    min-height: 30px;
+    padding: 0.25rem 0 0.6rem;
+    text-align: left;
+  }
+
+  .card {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 1.1rem 1.1rem 1.2rem;
+  }
+
+  .card::before {
+    display: none;
+  }
+
+  :host-context(html.js) .card {
+    transform: translateY(20px);
+  }
+
+  :host-context(html.js) .when {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host-context(html.js) .when,
+  :host-context(html.js) .card {
+    opacity: 1;
+    transform: none;
+  }
+}

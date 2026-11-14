@@ -1,0 +1,142 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  overflow: hidden;
+  padding: 1.35rem 1.4rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    translate 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+  translate: 0 -4px;
+}
+
+.card.featured {
+  grid-column: span 3;
+  padding: 1.6rem 1.7rem 1.65rem;
+  background:
+    linear-gradient(160deg, var(--accent-soft), transparent 42%),
+    var(--surface);
+}
+
+/* Accent line across the top of featured cards. */
+.card.featured::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--edu));
+}
+
+.shot {
+  width: calc(100% + 2.8rem);
+  max-width: none;
+  margin: -1.35rem -1.4rem 1.2rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.folder {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.kind {
+  color: var(--text-faint);
+}
+
+.badge {
+  margin-left: auto;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.title {
+  font-size: 1.1rem;
+}
+
+.featured .title {
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+}
+
+.period {
+  margin-top: 0.35rem;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.description {
+  margin-top: 0.8rem;
+  margin-bottom: 1.1rem;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+.chips {
+  margin-top: auto;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.1rem;
+}
+
+.btn.small {
+  min-height: 38px;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .card,
+  .card.featured {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .card,
+  .card.featured {
+    grid-column: 1 / -1;
+  }
+}

@@ -1,0 +1,91 @@
+.hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + clamp(2.5rem, 8vw, 6rem));
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+
+/* Soft accent glow behind the terminal. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(42rem 26rem at 78% 30%, var(--glow), transparent 70%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+.intro > * {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.intro > :nth-child(2) { animation-delay: 0.06s; }
+.intro > :nth-child(3) { animation-delay: 0.12s; }
+.intro > :nth-child(4) { animation-delay: 0.18s; }
+.intro > :nth-child(5) { animation-delay: 0.24s; }
+.intro > :nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.hello {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.prompt {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.name {
+  margin-top: 0.6rem;
+  font-size: clamp(2.1rem, 6.2vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.role {
+  margin-top: 0.9rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+  font-weight: 500;
+}
+
+.tagline {
+  max-width: 48ch;
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 1.08rem;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.8rem;
+}
+
+.social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

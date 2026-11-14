@@ -1,92 +1,13 @@
-<div class="container mt-5">
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700 text-center">Rahul Kumar Mandal</h2>
-      <p class="consolas-400 text-center">Full Stack Developer</p>
+<app-header />
 
-      <div class="container">
-        <p class="d-flex justify-content-between row align-items-center">
-          <a [href]="'mailto:'+Email"
-             target="_blank"
-             class="consolas-400 col-lg-4 col-md-6 col-sm-12">
-            <img src="mail.svg"
-                 alt="">
-            <span class="ms-3">{{Email}}</span>
-          </a>
-          <a [href]="'https://github.com/'+Github"
-             target="_blank"
-             class="consolas-400 col-lg-4 col-md-6 col-sm-12">
-            <img src="github.svg"
-                 alt="">
-            <span class="ms-3">{{Github}}</span>
-          </a>
-          <a [href]="'https://www.linkedin.com/in/'+Linkedin"
-             target="_blank"
-             class="consolas-400 col-lg-4 col-md-6 col-sm-12">
-            <img src="linkedin.svg"
-                 alt="">
-            <span class="ms-3">{{Linkedin}}</span>
-          </a>
-        </p>
-      </div>
+<main id="main">
+  <app-hero />
+  <app-about />
+  <app-timeline />
+  <app-projects />
+  <app-certificates />
+</main>
 
-    </div>
-  </div>
-
-  <hr>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700">About</h2>
-    </div>
-  </div>
-  <app-section [Values]="About"></app-section>
-
-  <hr>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700">Experience</h2>
-    </div>
-  </div>
-  <app-section [Values]="Webaikon"></app-section>
-  <app-section [Values]="Ardent"></app-section>
-
-
-  <hr>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700">Projects</h2>
-    </div>
-  </div>
-  <app-section [Values]="Dss"></app-section>
-  <app-section [Values]="Vrpr"></app-section>
-  <app-section [Values]="TodoApp"></app-section>
-  <app-section [Values]="BCAManagement"></app-section>
-  <app-section [Values]="SchoolERP"></app-section>
-  
-  
-  
-  
-  
-  <hr>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700">Certificates</h2>
-    </div>
-  </div>
-  <app-section [Values]="PostmanCertificate"></app-section>
-  <app-section [Values]="SoftwareDevelopmentCertificate"></app-section>
-  
-  
-  <hr>
-  <div class="row">
-    <div class="col-12">
-      <h2 class="jetbrains-mono-700">Education</h2>
-    </div>
-  </div>
-  <app-section [Values]="Masters"></app-section>
-  <app-section [Values]="Bachelor"></app-section>
-
-
-
-</div>
+<app-contact />

@@ -1,0 +1,60 @@
+<section id="projects" class="section">
+  <div class="container">
+    <header class="section-head" appReveal>
+      <p class="eyebrow">03. projects</p>
+      <h2 class="section-title">Projects</h2>
+      <p class="lede">Things I have built at university, during internships and on my own.</p>
+    </header>
+
+    <ul class="grid">
+      @for (project of projects; track project.id; let i = $index) {
+        <li
+          class="card"
+          [class.featured]="project.featured"
+          appReveal
+          [revealDelay]="(i % 3) * 80"
+        >
+          @if (project.image) {
+            <img class="shot" [src]="project.image" [alt]="project.title + ' screenshot'" loading="lazy" />
+          }
+
+          <div class="top">
+            <span class="folder"><app-icon name="folder" [size]="20" /></span>
+            <span class="kind">
+              {{ project.kind }}@if (project.context) { · {{ project.context }} }
+            </span>
+            @if (project.featured) {
+              <span class="badge">Featured</span>
+            }
+          </div>
+
+          <h3 class="title">{{ project.title }}</h3>
+          <p class="period">{{ project.period }}</p>
+          <p class="description">{{ project.description }}</p>
+
+          <ul class="chips" aria-label="Technologies">
+            @for (tech of project.stack; track tech) {
+              <li class="chip">{{ tech }}</li>
+            }
+          </ul>
+
+          <div class="links">
+            @if (project.demo) {
+              <a class="btn btn-primary small" [href]="project.demo" target="_blank" rel="noopener">
+                Live demo
+                <app-icon name="external" [size]="15" />
+              </a>
+            }
+            @if (project.repo) {
+              <a class="btn small" [href]="project.repo" target="_blank" rel="noopener">
+                <app-icon name="github" [size]="15" />
+                Code
+                <span class="sr-only">for {{ project.title }}</span>
+              </a>
+            }
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

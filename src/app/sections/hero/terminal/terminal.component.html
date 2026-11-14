@@ -1,0 +1,70 @@
+<div class="terminal" role="group" aria-label="Interactive terminal. Type help for a list of commands.">
+  <div class="titlebar" aria-hidden="true">
+    <span class="dot red"></span>
+    <span class="dot amber"></span>
+    <span class="dot green"></span>
+    <span class="title">{{ handle }} — zsh</span>
+  </div>
+
+  <!-- A click anywhere on the screen focuses the prompt; keyboard users reach the input directly. -->
+  <div class="screen" #screen (click)="focusPrompt()">
+    <div class="output" role="log" aria-live="polite" aria-label="Terminal output">
+      @for (line of lines(); track $index) {
+        <p class="line" [class]="line.kind" [style.animation-delay.ms]="line.delay ?? null">
+          @switch (line.kind) {
+            @case ('command') {
+              <span class="ps1" aria-hidden="true">$</span>
+              <span>{{ line.text }}</span>
+            }
+            @case ('commit') {
+              <span class="hash">{{ line.hash }}</span>
+              <span>
+                @if (line.head) {
+                  <span class="ref">(HEAD)</span>
+                }
+                {{ line.text }}
+              </span>
+            }
+            @case ('pair') {
+              <span class="key">{{ line.key }}</span>
+              <span>{{ line.text }}</span>
+            }
+            @case ('link') {
+              <span class="key">{{ line.key }}</span>
+              <a [href]="line.href" target="_blank" rel="noopener">{{ line.text }}</a>
+            }
+            @default {
+              <span>{{ line.text }}</span>
+            }
+          }
+        </p>
+      }
+    </div>
+
+    <label class="prompt" [style.animation-delay.ms]="promptDelay">
+      <span class="ps1" aria-hidden="true">$</span>
+      <input
+        #input
+        class="input"
+        type="text"
+        [value]="value()"
+        (input)="onInput($event)"
+        (keydown)="onKeydown($event)"
+        placeholder="type 'help' and press Enter"
+        aria-label="Terminal command"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        enterkeyhint="go"
+      />
+    </label>
+  </div>
+
+  <div class="hints">
+    <span class="hints-label" aria-hidden="true">try</span>
+    @for (suggestion of suggestions; track suggestion) {
+      <button type="button" class="hint" (click)="submit(suggestion)">{{ suggestion }}</button>
+    }
+  </div>
+</div>
